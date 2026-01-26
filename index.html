@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~/bitácora/entrañas</title>
+    <style>
+        /* --- COLOR PALETTE ---
+           Change these variables to alter the entire theme easily.
+           This is set to a "Minimalist Dark Mode".
+        */
+        :root {
+            --bg-color: #0a0a0a; /* Almost black background */
+            --text-color: #cccccc; /* Light grey text (easier on eyes than pure white) */
+            --accent-color: #ffffff; /* Pure white for highlights/timestamps */
+            --dim-color: #555555; /* Dark grey for secondary info */
+            --border-color: #333333; /* Subtle borders for structure */
+        }
+
+        /* --- GLOBAL STYLES ---
+           Sets the font to look like code/terminal.
+        */
+        body {
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT CONTAINER ---
+           Keeps content centered and readable on large screens.
+        */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER SECTION ---
+           Top area with title and system info.
+        */
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 14px;
+            font-weight: normal;
+            color: var(--accent-color);
+            margin: 0 0 10px 0;
+        }
+
+        .sys-info {
+            color: var(--dim-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- CONTROLS / BUTTONS ---
+           Styled to look like terminal commands.
+        */
+        .controls {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid var(--dim-color);
+            color: var(--text-color);
+            font-family: inherit; /* Use the same monospace font */
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+            button:hover {
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+            }
+
+        /* --- FEED ENTRIES ---
+           The styling for each post in the list.
+        */
+        .entry {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+            /* Optional: Vertical line connecting entries (hidden by default) */
+            .entry::before {
+                content: "";
+                position: absolute;
+                left: -20px;
+                top: 5px;
+                bottom: -80px;
+                width: 1px;
+                background: var(--border-color);
+                display: none;
+            }
+
+        .entry-meta {
+            margin-bottom: 15px;
+            color: var(--dim-color);
+            font-size: 12px;
+        }
+
+        .entry-timestamp {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .entry-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .caption {
+            max-width: 500px;
+        }
+
+        /* --- NOTE BLOCKS ---
+           Special styling for text-only updates (looks like code blocks).
+        */
+        .note-block {
+            background: #111;
+            padding: 10px;
+            border-left: 2px solid var(--dim-color);
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        /* --- FOOTER ---
+        */
+        footer {
+            margin-top: 100px;
+            color: var(--dim-color);
+            font-size: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER: Title and Info -->
+        <header>
+            <h1>./bitácora_entrañas.sh</h1>
+            <div class="sys-info">
+                usr: gil@iteso<br>
+                dir: /home/projects/entrañas<br>
+                status: active
+            </div>
+
+            <!-- BUTTONS: Triggers for JS actions -->
+            <div class="controls">
+                <button onclick="addDemoEntry()">[ touch new_entry ]</button>
+                <button onclick="window.scrollTo(0,document.body.scrollHeight)">[ tail -f log ]</button>
+            </div>
+        </header>
+
+        <!-- FEED: Where posts go -->
+        <div id="feed">
+
+            <!-- POST 1: Image -->
+            <div class="entry">
+                <div class="entry-meta">
+                    <span class="entry-timestamp">2026-01-25 23:30:15</span>
+                    <span>root</span>
+                </div>
+                <!-- Image src is a placeholder service; replace with real URLs later -->
+                <img src="https://placehold.co/700x500/151515/dddddd?text=sketch_v01.jpg" alt="scan" class="entry-img">
+                <div class="caption">
+                    > bocetos iniciales de estructura narrativa.<br>
+                    > nota: la navegación debe imitar una excavación.
+                </div>
+            </div>
+
+            <!-- POST 2: Image -->
+            <div class="entry">
+                <div class="entry-meta">
+                    <span class="entry-timestamp">2026-01-24 14:15:00</span>
+                    <span>gil</span>
+                </div>
+                <img src="https://placehold.co/700x400/151515/dddddd?text=ref_texture_04.png" alt="ref" class="entry-img">
+                <div class="caption">
+                    > referencia: texturas de piedra volcánica.<br>
+                    > locación: exterior.
+                </div>
+            </div>
+
+            <!-- POST 3: Text Note -->
+            <div class="entry">
+                <div class="entry-meta">
+                    <span class="entry-timestamp">2026-01-22 09:00:00</span>
+                    <span>system</span>
+                </div>
+                <div class="note-block">
+                    $ init repository<br>
+                    $ mkdir entrañas<br>
+                    > objetivos: paleta de colores, material de archivo.
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <!-- The blinking cursor element -->
+            <span id="cursor">_</span>
+        </footer>
+    </div>
+
+    <script>
+        // --- BLINKING CURSOR LOGIC ---
+        // Runs every 800ms to toggle visibility (opacity)
+        setInterval(() => {
+            const cursor = document.getElementById('cursor');
+            // If opacity is 0, make it 1; otherwise make it 0
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }, 800);
+
+        // --- ADD NEW ENTRY LOGIC ---
+        // Called when you click "[ touch new_entry ]"
+        function addDemoEntry() {
+            const feed = document.getElementById('feed');
+            const now = new Date();
+
+            // Format current time as: 2026-01-25 14:30:00
+            const dateStr = now.toISOString().replace('T', ' ').substring(0, 19);
+
+            // Create a new HTML 'div' element for the entry
+            const newEntry = document.createElement('div');
+            newEntry.className = 'entry';
+
+            // Fill it with HTML content
+            newEntry.innerHTML = `
+                <div class="entry-meta">
+                    <span class="entry-timestamp">${dateStr}</span>
+                    <span>gil</span>
+                </div>
+                <div class="note-block">
+                    > nueva entrada generada.<br>
+                    > esperando carga de archivo...
+                </div>
+            `;
+
+            // Insert it at the TOP of the feed
+            feed.insertBefore(newEntry, feed.firstChild);
+        }
+    </script>
+</body>
+</html>
