@@ -15,8 +15,16 @@
         }
 
         body {
-            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-            background-attachment: fixed;
+
+            /* Usamos tu imagen de fondo */
+            background-image: 
+            linear-gradient(rgba(126, 204, 232, 0.7), rgba(0, 91, 150, 0.8)), /* Capa de color para legibilidad */
+            url(img/'fondo.jpg'); 
+    
+            background-size: cover;       /* Ajusta la imagen para cubrir toda la pantalla */
+            background-position: center;  /* Centra la imagen */
+            background-attachment: fixed; /* La imagen se queda quieta al hacer scroll */
+            
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
             color: var(--pencil-dark);
             margin: 0;
@@ -147,4 +155,5 @@
 </body>
 
 </html>
+
 
