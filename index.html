@@ -1,264 +1,213 @@
+隆Entendido, Gil! Vamos a transformar esa terminal oscura en una expedici贸n submarina con estilo de dibujo a mano. He mantenido la funcionalidad de tu c贸digo original pero cambi茅 toda la "piel" (CSS) y algunos textos para que encajen con Oli y Eco.
+
+Aqu铆 tienes el c贸digo actualizado:
+
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~/bit醕ora/entra馻s</title>
+    <title>Oli y Eco: Bit谩cora Submarina</title>
     <style>
-        /* --- COLOR PALETTE ---
-           Change these variables to alter the entire theme easily.
-           This is set to a "Minimalist Dark Mode".
-        */
+        /* --- PALETA OC脡ANO Y L脕PIZ --- */
         :root {
-            --bg-color: #0a0a0a; /* Almost black background */
-            --text-color: #cccccc; /* Light grey text (easier on eyes than pure white) */
-            --accent-color: #ffffff; /* Pure white for highlights/timestamps */
-            --dim-color: #555555; /* Dark grey for secondary info */
-            --border-color: #333333; /* Subtle borders for structure */
+            --bg-top: #7ecce8;     /* Azul superficie */
+            --bg-bottom: #005b96;  /* Azul profundo */
+            --paper-color: rgba(255, 255, 240, 0.9); /* Papel crema */
+            --pencil-blue: #1a4a9e;
+            --pencil-dark: #002b5c;
+            --accent-yellow: #fcd12a; /* El color de las aletas */
         }
 
-        /* --- GLOBAL STYLES ---
-           Sets the font to look like code/terminal.
-        */
+        /* --- ESTILOS GLOBALES --- */
         body {
-            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            /* Degradado de fondo */
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background-attachment: fixed;
+            /* Fuentes que parecen escritas a mano */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+            color: var(--pencil-dark);
             margin: 0;
-            padding: 40px;
-            font-size: 14px;
-            line-height: 1.6;
+            padding: 20px;
+            line-height: 1.4;
+            /* Textura de "ruido" para simular papel/l谩piz */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3F%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* --- LAYOUT CONTAINER ---
-           Keeps content centered and readable on large screens.
-        */
         .container {
             max-width: 680px;
             margin: 0 auto;
-        }
-
-        /* --- HEADER SECTION ---
-           Top area with title and system info.
-        */
-        header {
-            margin-bottom: 60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 14px;
-            font-weight: normal;
-            color: var(--accent-color);
-            margin: 0 0 10px 0;
-        }
-
-        .sys-info {
-            color: var(--dim-color);
-            margin-bottom: 20px;
-        }
-
-        /* --- CONTROLS / BUTTONS ---
-           Styled to look like terminal commands.
-        */
-        .controls {
-            display: flex;
-            gap: 20px;
-        }
-
-        button {
-            background: none;
-            border: 1px solid var(--dim-color);
-            color: var(--text-color);
-            font-family: inherit; /* Use the same monospace font */
-            cursor: pointer;
-            padding: 5px 10px;
-            font-size: 12px;
-        }
-
-            button:hover {
-                border-color: var(--accent-color);
-                color: var(--accent-color);
-            }
-
-        /* --- FEED ENTRIES ---
-           The styling for each post in the list.
-        */
-        .entry {
-            margin-bottom: 80px;
             position: relative;
         }
 
-            /* Optional: Vertical line connecting entries (hidden by default) */
-            .entry::before {
-                content: "";
-                position: absolute;
-                left: -20px;
-                top: 5px;
-                bottom: -80px;
-                width: 1px;
-                background: var(--border-color);
-                display: none;
-            }
-
-        .entry-meta {
-            margin-bottom: 15px;
-            color: var(--dim-color);
-            font-size: 12px;
+        /* --- CABECERA ESTILO PORTADA --- */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--paper-color);
+            /* Borde irregular (estilo dibujo manual) */
+            border: 3px solid var(--pencil-blue);
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
         }
 
-        .entry-timestamp {
-            color: var(--accent-color);
-            margin-right: 10px;
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            color: var(--pencil-blue);
+            text-transform: uppercase;
+        }
+
+        .sys-info {
+            font-size: 0.9em;
+            color: var(--pencil-blue);
+            font-style: italic;
+        }
+
+        /* --- BOTONES --- */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        button {
+            background: var(--accent-yellow);
+            border: 2px solid var(--pencil-blue);
+            border-radius: 12px 4px 14px 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        /* --- ENTRADAS (BURBUJAS) --- */
+        .entry {
+            background: var(--paper-color);
+            margin-bottom: 50px;
+            padding: 20px;
+            border: 2px solid var(--pencil-blue);
+            /* Otro borde irregular */
+            border-radius: 30px 90px 20px 100px / 80px 15px 100px 25px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        .entry-meta {
+            font-size: 12px;
+            border-bottom: 1px dashed var(--pencil-blue);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
         }
 
         .entry-img {
             max-width: 100%;
             height: auto;
-            display: block;
+            border-radius: 10px;
+            border: 2px solid var(--pencil-blue);
             margin-bottom: 15px;
-            border: 1px solid var(--border-color);
+            display: block;
         }
 
-        .caption {
-            max-width: 500px;
-        }
-
-        /* --- NOTE BLOCKS ---
-           Special styling for text-only updates (looks like code blocks).
-        */
+        /* --- NOTAS DE TEXTO --- */
         .note-block {
-            background: #111;
-            padding: 10px;
-            border-left: 2px solid var(--dim-color);
-            margin-top: 10px;
-            font-size: 13px;
+            background: rgba(126, 204, 232, 0.2);
+            padding: 15px;
+            border-left: 5px solid var(--pencil-blue);
+            font-size: 14px;
         }
 
-        /* --- FOOTER ---
-        */
-        footer {
-            margin-top: 100px;
-            color: var(--dim-color);
-            font-size: 12px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+        /* --- ANIMACI脫N DE BURBUJAS --- */
+        .bubble {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            bottom: -50px;
+            animation: rise 10s infinite ease-in;
+            z-index: -1;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 20px;
-            }
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- HEADER: Title and Info -->
+        <div class="bubble" style="width:20px; height:20px; left:10%; animation-delay: 2s;"></div>
+        <div class="bubble" style="width:40px; height:40px; left:80%; animation-delay: 0s;"></div>
+
         <header>
-            <h1>./bit醕ora_entra馻s.sh</h1>
+            <h1>Oli y Eco: Exploran Glutube</h1>
             <div class="sys-info">
-                usr: gil@iteso<br>
-                dir: /home/projects/entra馻s<br>
-                status: active
+                Expedici贸n de Gil @ ITESO | Semestre Actual
             </div>
 
-            <!-- BUTTONS: Triggers for JS actions -->
             <div class="controls">
-                <button onclick="addDemoEntry()">[ touch new_entry ]</button>
-                <button onclick="window.scrollTo(0,document.body.scrollHeight)">[ tail -f log ]</button>
+                <button onclick="addDemoEntry()">[ + Nueva Nota ]</button>
+                <button onclick="window.scrollTo(0,document.body.scrollHeight)">[ Ir al fondo ]</button>
             </div>
         </header>
 
-        <!-- FEED: Where posts go -->
         <div id="feed">
-
-            <!-- POST 1: Image -->
             <div class="entry">
                 <div class="entry-meta">
-                    <span class="entry-timestamp">2026-01-25 23:30:15</span>
-                    <span>root</span>
+                    <span style="font-weight:bold;">2026-02-08</span> | Registro de Buceo
                 </div>
-                <!-- Image src is a placeholder service; replace with real URLs later -->
-                <img src="https://placehold.co/700x500/151515/dddddd?text=sketch_v01.jpg" alt="scan" class="entry-img">
+                <img src="https://placehold.co/700x500/7ecce8/002b5c?text=oli_nadando.jpg" alt="scan" class="entry-img">
                 <div class="caption">
-                    > bocetos iniciales de estructura narrativa.<br>
-                    > nota: la navegaci髇 debe imitar una excavaci髇.
+                    Dibujo de Oli explorando la zona de Glutube. Los colores deben ser vibrantes pero con textura de cray贸n.
                 </div>
             </div>
 
-            <!-- POST 2: Image -->
             <div class="entry">
                 <div class="entry-meta">
-                    <span class="entry-timestamp">2026-01-24 14:15:00</span>
-                    <span>gil</span>
-                </div>
-                <img src="https://placehold.co/700x400/151515/dddddd?text=ref_texture_04.png" alt="ref" class="entry-img">
-                <div class="caption">
-                    > referencia: texturas de piedra volc醤ica.<br>
-                    > locaci髇: exterior.
-                </div>
-            </div>
-
-            <!-- POST 3: Text Note -->
-            <div class="entry">
-                <div class="entry-meta">
-                    <span class="entry-timestamp">2026-01-22 09:00:00</span>
-                    <span>system</span>
+                    <span style="font-weight:bold;">2026-02-07</span> | Sistema
                 </div>
                 <div class="note-block">
-                    $ init repository<br>
-                    $ mkdir entra馻s<br>
-                    > objetivos: paleta de colores, material de archivo.
+                    * Adaptando el motor de renderizado a la est茅tica submarina.<br>
+                    * Objetivo: Que el usuario sienta que lee un cuento infantil interactivo.
                 </div>
             </div>
-
         </div>
 
-        <footer>
-            <!-- The blinking cursor element -->
-            <span id="cursor">_</span>
+        <footer style="text-align: center; color: white; padding: 40px;">
+            <span id="cursor">馃</span>
         </footer>
     </div>
 
     <script>
-        // --- BLINKING CURSOR LOGIC ---
-        // Runs every 800ms to toggle visibility (opacity)
         setInterval(() => {
             const cursor = document.getElementById('cursor');
-            // If opacity is 0, make it 1; otherwise make it 0
             cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
         }, 800);
 
-        // --- ADD NEW ENTRY LOGIC ---
-        // Called when you click "[ touch new_entry ]"
         function addDemoEntry() {
             const feed = document.getElementById('feed');
             const now = new Date();
+            const dateStr = now.toISOString().split('T')[0];
 
-            // Format current time as: 2026-01-25 14:30:00
-            const dateStr = now.toISOString().replace('T', ' ').substring(0, 19);
-
-            // Create a new HTML 'div' element for the entry
             const newEntry = document.createElement('div');
             newEntry.className = 'entry';
-
-            // Fill it with HTML content
             newEntry.innerHTML = `
                 <div class="entry-meta">
-                    <span class="entry-timestamp">${dateStr}</span>
-                    <span>gil</span>
+                    <span style="font-weight:bold;">${dateStr}</span> | Nueva Observaci贸n
                 </div>
                 <div class="note-block">
-                    > nueva entrada generada.<br>
-                    > esperando carga de archivo...
+                    Oli encontr贸 una nueva corriente de datos. <br>
+                    > Estado: Explorando...
                 </div>
             `;
-
-            // Insert it at the TOP of the feed
             feed.insertBefore(newEntry, feed.firstChild);
         }
     </script>
